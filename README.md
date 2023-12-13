@@ -1,2 +1,3 @@
-# README-Generator
-A command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package to an external site.
+# Professional README Generator Starter Code
+
+[How to create a Professional README](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
