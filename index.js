@@ -11,13 +11,12 @@ const questions = [
    },
 ];
 
-inquirer.prompt(questions).then((response) => {
-   console.log("file: index.js:16 ~ response:", response);
+inquirer.prompt(questions).then((answers) => {
+   console.log("file: index.js:15 ~ readmeData:", answers);
+   // answers = `HI RUTHIE how are you`;
+   let readme = `#${answers.projectName}`;
+   writeToFile("./README.md", readme);
 });
-
-let readmeData = `HI RUTHIE`;
-
-writeToFile("./README.md", readmeData);
 
 // TODO: Create a function to write README file
 
