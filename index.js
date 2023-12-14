@@ -34,7 +34,15 @@ const questions = [
       name: "tests",
       message: "Provide instructions how to run tests on your project.",
    },
+   {
+      type: "list",
+      name: "license",
+      message: "Select your project license type.",
+      choices: ["MIT", "Ruffus License"],
+   },
 ];
+
+let licenseDescr = "description of ruffus license.";
 
 //* Launch inquirer to go thru questions array, using promises to wait until all questions
 //* are answered. Then call writeToFile function to generate readme file content and
@@ -42,6 +50,7 @@ const questions = [
 const main = async () => {
    const answers = await inquirer.prompt(questions);
    let readme = `# ${answers.projectName}
+## ${answers.license}
 ## Project Description
 ${answers.description}
 ## Installation
@@ -52,6 +61,8 @@ ${answers.usage}
 ${answers.contributions}
 ## Tests
 ${answers.tests}
+## License
+${licenseDescr}
 `;
    writeToFile("./README.md", readme);
 };
