@@ -9,6 +9,31 @@ const questions = [
       name: "projectName",
       message: "What is your project name?",
    },
+   {
+      type: "input",
+      name: "description",
+      message: "Enter a brief project description.",
+   },
+   {
+      type: "input",
+      name: "install",
+      message: "Provide installation instructions for your project.",
+   },
+   {
+      type: "input",
+      name: "usage",
+      message: "Provide instructions and examples to use. Provide screenshots if needed.",
+   },
+   {
+      type: "input",
+      name: "contributions",
+      message: "Provide guidelines for collaborators to contribute to your project.",
+   },
+   {
+      type: "input",
+      name: "tests",
+      message: "Provide instructions how to run tests on your project.",
+   },
 ];
 
 //* Launch inquirer to go thru questions array, using promises to wait until all questions
@@ -16,7 +41,18 @@ const questions = [
 //* write readme.md file
 const main = async () => {
    const answers = await inquirer.prompt(questions);
-   let readme = `#${answers.projectName}`;
+   let readme = `# ${answers.projectName}
+## Project Description
+${answers.description}
+## Installation
+${answers.install}
+## Usage
+${answers.usage}
+## Contributions
+${answers.contributions}
+## Tests
+${answers.tests}
+`;
    writeToFile("./README.md", readme);
 };
 main();
