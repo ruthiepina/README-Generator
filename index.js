@@ -11,15 +11,15 @@ const questions = [
    },
 ];
 
+//* Launch inquirer to go thru questions array, using promises to wait until all questions
+//* are answered. Then call writeToFile function to generate readme file content and 
+//* write readme.md file
 inquirer.prompt(questions).then((answers) => {
-   console.log("file: index.js:15 ~ readmeData:", answers);
-   // answers = `HI RUTHIE how are you`;
    let readme = `#${answers.projectName}`;
    writeToFile("./README.md", readme);
 });
 
 // TODO: Create a function to write README file
-
 function writeToFile(fileName, data) {
    fs.writeFile(fileName, data, "utf8", (err) => {
       if (err) {
