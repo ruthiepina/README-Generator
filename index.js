@@ -12,12 +12,19 @@ const questions = [
 ];
 
 //* Launch inquirer to go thru questions array, using promises to wait until all questions
-//* are answered. Then call writeToFile function to generate readme file content and 
+//* are answered. Then call writeToFile function to generate readme file content and
 //* write readme.md file
-inquirer.prompt(questions).then((answers) => {
+const main = async () => {
+   const answers = await inquirer.prompt(questions);
    let readme = `#${answers.projectName}`;
    writeToFile("./README.md", readme);
-});
+};
+main();
+
+// inquirer.prompt(questions).then((answers) => {
+//    let readme = `#${answers.projectName}`;
+//    writeToFile("./README.md", readme);
+// });
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
