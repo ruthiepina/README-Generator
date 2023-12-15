@@ -1,15 +1,16 @@
 {
-  "name": "readme-generator",
-  "version": "1.0.0",
-  "description": "automatic generation of readme.md files with inquirer.js",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Ruth Pina",
-  "license": "MIT",
-  "dependencies": {
-    "inquirer": "^8.2.4",
-    "node-fetch": "^3.3.2"
-  }
+   "name": "readme-generator",
+   "version": "1.0.0",
+   "description": "automatic generation of readme.md files with inquirer.js",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Ruth Pina",
+   "license": "MIT",
+   "dependencies": {
+      "inquirer": "^8.2.4",
+      "node-fetch": "^3.3.2"
+   },
+   "type": "module"
 }

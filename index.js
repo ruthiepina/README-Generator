@@ -1,18 +1,30 @@
 // TODO: Include packages needed for this application
-const inquirer = require("inquirer");
-const fs = require("fs");
+// const inquirer = require("inquirer");
+import inquirer from "inquirer";
+// const fs = require("fs");
+import fs from "fs";
 
 let licenseTypes = [];
 
 import fetch from "node-fetch";
 
-fetch("https://api.github.com/licenses", {
+const response = await fetch("https://api.github.com/licenses", {
    headers: {
       Accept: "application/vnd.github+json",
       // Authorization: "Bearer <YOUR-TOKEN>",
       "X-GitHub-Api-Version": "2022-11-28",
    },
 });
+
+console.log("file: index.js:16 ~ response:", response);
+const data = await response.json();
+console.log("file: index.js:20 ~ data:", data);
+
+//* array1.forEach((element) => console.log(element));
+data.forEach((element) => {
+   licenseTypes.push(element.name);
+});
+console.log("file: index.js:26 ~ licenseTypes:", licenseTypes);
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -47,14 +59,12 @@ const questions = [
       message: "Provide instructions how to run tests on your project.",
    },
    {
-      type: "list",
+      type: "rawlist",
       name: "license",
       message: "Select your project license type.",
       choices: licenseTypes,
    },
 ];
-
-
 
 //* Launch inquirer to go thru questions array, using promises to wait until all questions
 //* are answered. Then call writeToFile function to generate readme file content and
