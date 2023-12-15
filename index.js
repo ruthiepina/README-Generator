@@ -2,6 +2,18 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+let licenseTypes = [];
+
+import fetch from "node-fetch";
+
+fetch("https://api.github.com/licenses", {
+   headers: {
+      Accept: "application/vnd.github+json",
+      // Authorization: "Bearer <YOUR-TOKEN>",
+      "X-GitHub-Api-Version": "2022-11-28",
+   },
+});
+
 // TODO: Create an array of questions for user input
 const questions = [
    {
@@ -38,11 +50,11 @@ const questions = [
       type: "list",
       name: "license",
       message: "Select your project license type.",
-      choices: ["MIT", "Ruffus License"],
+      choices: licenseTypes,
    },
 ];
 
-let licenseDescr = "description of ruffus license.";
+
 
 //* Launch inquirer to go thru questions array, using promises to wait until all questions
 //* are answered. Then call writeToFile function to generate readme file content and
