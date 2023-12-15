@@ -5,6 +5,7 @@ import inquirer from "inquirer";
 import fs from "fs";
 
 let licenseTypes = [];
+let licenseDescr = [];
 
 import fetch from "node-fetch";
 
@@ -16,13 +17,12 @@ const response = await fetch("https://api.github.com/licenses", {
    },
 });
 
-console.log("file: index.js:16 ~ response:", response);
 const data = await response.json();
 console.log("file: index.js:20 ~ data:", data);
 
 //* array1.forEach((element) => console.log(element));
 data.forEach((element) => {
-   licenseTypes.push(element.name);
+   licenseTypes.push({ key: element.key, name: element.name });
 });
 console.log("file: index.js:26 ~ licenseTypes:", licenseTypes);
 
@@ -59,7 +59,7 @@ const questions = [
       message: "Provide instructions how to run tests on your project.",
    },
    {
-      type: "rawlist",
+      type: "list",
       name: "license",
       message: "Select your project license type.",
       choices: licenseTypes,
@@ -71,6 +71,18 @@ const questions = [
 //* write readme.md file
 const main = async () => {
    const answers = await inquirer.prompt(questions);
+   console.log("file: index.js:75 ~ answers:", answers);
+
+   const response = await fetch("https://api.github.com/licenses/" + answers.license, {
+      headers: {
+         Accept: "application/vnd.github+json",
+         // Authorization: "Bearer <YOUR-TOKEN>",
+         "X-GitHub-Api-Version": "2022-11-28",
+      },
+   });
+   const data = await response.json();
+   console.log("file: index.js:85 ~ data:", data.description);
+
    let readme = `# ${answers.projectName}
 ## ${answers.license}
 ## Project Description
@@ -84,7 +96,8 @@ ${answers.contributions}
 ## Tests
 ${answers.tests}
 ## License
-${licenseDescr}
+${answers.license}
+${data.description}
 `;
    writeToFile("./README.md", readme);
 };
