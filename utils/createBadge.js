@@ -1,9 +1,9 @@
 import { makeBadge, ValidationError } from "badge-maker";
 
-const createBadge = (key) => {
+const createBadge = (message) => {
    const format = {
       label: "license",
-      message: key.toUpperCase(),
+      message: message.toUpperCase(),
       labelColor: "lightgrey",
       color: "red",
       style: "plastic",
