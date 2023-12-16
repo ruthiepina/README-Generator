@@ -16,48 +16,46 @@ const response = await fetch("https://api.github.com/licenses", {
       "X-GitHub-Api-Version": "2022-11-28",
    },
 });
-
 const data = await response.json();
-console.log("file: index.js:20 ~ data:", data);
 
 //* array1.forEach((element) => console.log(element));
 data.forEach((element) => {
    licenseTypes.push({ key: element.key, name: element.name });
 });
-console.log("file: index.js:26 ~ licenseTypes:", licenseTypes);
+console.log("file: index.js:24 ~ licenseTypes:", licenseTypes);
 
 // TODO: Create an array of questions for user input
 const questions = [
-   {
-      type: "input",
-      name: "projectName",
-      message: "What is your project name?",
-   },
-   {
-      type: "input",
-      name: "description",
-      message: "Enter a brief project description.",
-   },
-   {
-      type: "input",
-      name: "install",
-      message: "Provide installation instructions for your project.",
-   },
-   {
-      type: "input",
-      name: "usage",
-      message: "Provide instructions and examples to use. Provide screenshots if needed.",
-   },
-   {
-      type: "input",
-      name: "contributions",
-      message: "Provide guidelines for collaborators to contribute to your project.",
-   },
-   {
-      type: "input",
-      name: "tests",
-      message: "Provide instructions how to run tests on your project.",
-   },
+   // {
+   //    type: "input",
+   //    name: "projectName",
+   //    message: "What is your project name?",
+   // },
+   // {
+   //    type: "input",
+   //    name: "description",
+   //    message: "Enter a brief project description.",
+   // },
+   // {
+   //    type: "input",
+   //    name: "install",
+   //    message: "Provide installation instructions for your project.",
+   // },
+   // {
+   //    type: "input",
+   //    name: "usage",
+   //    message: "Provide instructions and examples to use. Provide screenshots if needed.",
+   // },
+   // {
+   //    type: "input",
+   //    name: "contributions",
+   //    message: "Provide guidelines for collaborators to contribute to your project.",
+   // },
+   // {
+   //    type: "input",
+   //    name: "tests",
+   //    message: "Provide instructions how to run tests on your project.",
+   // },
    {
       type: "list",
       name: "license",
@@ -71,9 +69,10 @@ const questions = [
 //* write readme.md file
 const main = async () => {
    const answers = await inquirer.prompt(questions);
-   console.log("file: index.js:75 ~ answers:", answers);
 
-   const response = await fetch("https://api.github.com/licenses/" + answers.license, {
+   let myLicense = licenseTypes.filter((element) => element.name == answers.license);
+
+   const response = await fetch("https://api.github.com/licenses/" + myLicense[0].key, {
       headers: {
          Accept: "application/vnd.github+json",
          // Authorization: "Bearer <YOUR-TOKEN>",
@@ -81,10 +80,8 @@ const main = async () => {
       },
    });
    const data = await response.json();
-   console.log("file: index.js:85 ~ data:", data.description);
 
    let readme = `# ${answers.projectName}
-## ${answers.license}
 ## Project Description
 ${answers.description}
 ## Installation
