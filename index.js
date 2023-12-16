@@ -1,30 +1,26 @@
 // TODO: Include packages needed for this application
-// const inquirer = require("inquirer");
 import inquirer from "inquirer";
-// const fs = require("fs");
 import fs from "fs";
+import fetch from "node-fetch";
+import { createBadge } from "./utils/createBadge.js";
 
 let licenseTypes = [];
-let licenseDescr = [];
+let licenseNames = [];
 
-import fetch from "node-fetch";
+const headers = {
+   Accept: "application/vnd.github+json",
+   "X-GitHub-Api-Version": "2022-11-28",
+};
+const gitHubAPI = "https://api.github.com/licenses";
 
-const response = await fetch("https://api.github.com/licenses", {
-   headers: {
-      Accept: "application/vnd.github+json",
-      // Authorization: "Bearer <YOUR-TOKEN>",
-      "X-GitHub-Api-Version": "2022-11-28",
-   },
-});
+const response = await fetch(gitHubAPI, { headers });
 const data = await response.json();
 
-//* array1.forEach((element) => console.log(element));
 data.forEach((element) => {
    licenseTypes.push({ key: element.key, name: element.name });
+   licenseNames.push(element.name);
 });
-console.log("file: index.js:24 ~ licenseTypes:", licenseTypes);
 
-// TODO: Create an array of questions for user input
 const questions = [
    // {
    //    type: "input",
@@ -60,7 +56,7 @@ const questions = [
       type: "list",
       name: "license",
       message: "Select your project license type.",
-      choices: licenseTypes,
+      choices: licenseNames,
    },
 ];
 
@@ -72,16 +68,12 @@ const main = async () => {
 
    let myLicense = licenseTypes.filter((element) => element.name == answers.license);
 
-   const response = await fetch("https://api.github.com/licenses/" + myLicense[0].key, {
-      headers: {
-         Accept: "application/vnd.github+json",
-         // Authorization: "Bearer <YOUR-TOKEN>",
-         "X-GitHub-Api-Version": "2022-11-28",
-      },
-   });
+   const response = await fetch(gitHubAPI + "/" + myLicense[0].key, { headers });
    const data = await response.json();
 
-   let readme = `# ${answers.projectName}
+   const svg = createBadge(myLicense[0].key);
+
+   let readme = `# ${answers.projectName} ${svg}
 ## Project Description
 ${answers.description}
 ## Installation
@@ -99,11 +91,6 @@ ${data.description}
    writeToFile("./README.md", readme);
 };
 main();
-
-// inquirer.prompt(questions).then((answers) => {
-//    let readme = `#${answers.projectName}`;
-//    writeToFile("./README.md", readme);
-// });
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
