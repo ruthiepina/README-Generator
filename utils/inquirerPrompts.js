@@ -44,6 +44,42 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
       //    message: "Provide instructions how to run tests on your project.",
       // },
       {
+         type: "input",
+         name: "creator",
+         message: "Enter your name: (Required)",
+         // validate: (notEmpty) => {
+         //    if (notEmpty) {
+         //       return true;
+         //    } else {
+         //       return false;
+         //    }
+         // },
+      },
+      {
+         type: "input",
+         name: "gitHubUser",
+         message: "Enter your GitHub username: (Required)",
+         // validate: (notEmpty) => {
+         //    if (notEmpty) {
+         //       return true;
+         //    } else {
+         //       return false;
+         //    }
+         // },
+      },
+      {
+         type: "input",
+         name: "email",
+         message: "Enter a valid email address: (Required)",
+         // validate: (notEmpty) => {
+         //    if (notEmpty) {
+         //       return true;
+         //    } else {
+         //       return false;
+         //    }
+         // },
+      },
+      {
          type: "list",
          name: "license",
          message: "Select your project license type.",

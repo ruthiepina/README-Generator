@@ -9,6 +9,13 @@ export const generateMarkdown = async (gitHubAPI, headers, answers, licenseTypes
    let readme = `# ${answers.projectName} ${svg}
 ## Project Description
 ${answers.description}
+## Table of Contents
+-  [Installation](#installation)
+-  [Usage](#usage)
+-  [Contributions](#contributions)
+-  [Tests](#tests)
+-  [License](#license)
+-  [Questions](#questions)
 ## Installation
 ${answers.install}
 ## Usage
@@ -20,6 +27,10 @@ ${answers.tests}
 ## License
 ${answers.license}
 ${data.description}
+## Questions
+README Generator created by ${answers.creator} with GitHub account [${answers.gitHubUser}](https://github.com/${answers.gitHubUser}).
+For any additional questions or comments, please send a message to the following address:
+Email Address: <${answers.email}>
 `;
    return readme;
 };
