@@ -44,6 +44,12 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
          message: "Provide instructions how to run tests on your project.",
       },
       {
+         type: "list",
+         name: "license",
+         message: "Select your project license type.",
+         choices: licenseNames,
+      },
+      {
          type: "input",
          name: "creator",
          message: "Enter your name: (Required)",
@@ -57,12 +63,6 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
          type: "input",
          name: "email",
          message: "Enter a valid email address: (Required)",
-      },
-      {
-         type: "list",
-         name: "license",
-         message: "Select your project license type.",
-         choices: licenseNames,
       },
    ];
 
