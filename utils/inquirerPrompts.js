@@ -13,71 +13,50 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
    });
 
    const questions = [
-      // {
-      //    type: "input",
-      //    name: "projectName",
-      //    message: "What is your project name?",
-      // },
-      // {
-      //    type: "input",
-      //    name: "description",
-      //    message: "Enter a brief project description.",
-      // },
-      // {
-      //    type: "input",
-      //    name: "install",
-      //    message: "Provide installation instructions for your project.",
-      // },
-      // {
-      //    type: "input",
-      //    name: "usage",
-      //    message: "Provide instructions and examples to use. Provide screenshots if needed.",
-      // },
-      // {
-      //    type: "input",
-      //    name: "contributions",
-      //    message: "Provide guidelines for collaborators to contribute to your project.",
-      // },
-      // {
-      //    type: "input",
-      //    name: "tests",
-      //    message: "Provide instructions how to run tests on your project.",
-      // },
+      {
+         type: "input",
+         name: "projectName",
+         message: "What is your project name?",
+      },
+      {
+         type: "input",
+         name: "description",
+         message: "Enter a brief project description.",
+      },
+      {
+         type: "input",
+         name: "install",
+         message: "Provide installation instructions for your project.",
+      },
+      {
+         type: "input",
+         name: "usage",
+         message: "Provide instructions and examples to use. Provide screenshots if needed.",
+      },
+      {
+         type: "input",
+         name: "contributions",
+         message: "Provide guidelines for collaborators to contribute to your project.",
+      },
+      {
+         type: "input",
+         name: "tests",
+         message: "Provide instructions how to run tests on your project.",
+      },
       {
          type: "input",
          name: "creator",
          message: "Enter your name: (Required)",
-         // validate: (notEmpty) => {
-         //    if (notEmpty) {
-         //       return true;
-         //    } else {
-         //       return false;
-         //    }
-         // },
       },
       {
          type: "input",
          name: "gitHubUser",
          message: "Enter your GitHub username: (Required)",
-         // validate: (notEmpty) => {
-         //    if (notEmpty) {
-         //       return true;
-         //    } else {
-         //       return false;
-         //    }
-         // },
       },
       {
          type: "input",
          name: "email",
          message: "Enter a valid email address: (Required)",
-         // validate: (notEmpty) => {
-         //    if (notEmpty) {
-         //       return true;
-         //    } else {
-         //       return false;
-         //    }
-         // },
       },
       {
          type: "list",
