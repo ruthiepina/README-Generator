@@ -12,6 +12,30 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
       licenseNames.push(element.name);
    });
 
+   const appIntro = `
+---------------------------------------------
+   Welcome to the README.md file generator
+---------------------------------------------
+
+
+Instructions:
+
+
+1. Understand what each prompt is asking you.
+2. Some prompts - Installation, Usage, Contributors, and Testing - will open your system default editor. *IMPORTANT*: When the editor opens, it opens behind the terminal. Make sure that you navigate to it to make it visible.
+   
+   a. Inside your editor you can add paragraphs, links, etc.
+   b. Just follow standard markdown syntax (you can visit https://www.markdownguide.org/basic-syntax/) for lists, bullets, bold, italic, links, etc.
+   c. If you need to add a header, start at the ### level.
+   d. When you finish, save the default file and close your editor.
+
+Your answer will be then automatically received by the application.
+
+
+Enjoy it!
+
+`;
+
    const questions = [
       {
          type: "input",
@@ -24,22 +48,22 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
          message: "Enter a brief project description.",
       },
       {
-         type: "input",
+         type: "editor",
          name: "install",
          message: "Provide installation instructions for your project.",
       },
       {
-         type: "input",
+         type: "editor",
          name: "usage",
          message: "Provide instructions and examples to use. Provide screenshots if needed.",
       },
       {
-         type: "input",
+         type: "editor",
          name: "contributions",
          message: "Provide guidelines for collaborators to contribute to your project.",
       },
       {
-         type: "input",
+         type: "editor",
          name: "tests",
          message: "Provide instructions how to run tests on your project.",
       },
@@ -66,6 +90,7 @@ export const inquirerPrompts = async (gitHubAPI, headers) => {
       },
    ];
 
+   console.log(appIntro);
    const answers = await inquirer.prompt(questions);
    return { answers, licenseTypes };
 };
