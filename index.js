@@ -1,6 +1,6 @@
 import { inquirerPrompts } from "./utils/inquirerPrompts.js";
 import { generateMarkdown } from "./utils/generateMarkdown.js";
-import { writeToFile } from "./utils/writeFile.js";
+import { writeToFile } from "./utils/writeToFile.js";
 
 const fileName = "./README.md";
 const headers = {

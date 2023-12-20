@@ -1,6 +1,6 @@
 import { makeBadge, ValidationError } from "badge-maker";
-
-const createBadge = (message) => {
+import { writeToFile } from "./writeToFile.js";
+export const createBadge = (message) => {
    const format = {
       label: "license",
       message: message.toUpperCase(),
@@ -8,7 +8,6 @@ const createBadge = (message) => {
       color: "red",
       style: "plastic",
    };
-   return makeBadge(format);
+   writeToFile("./assets/images/badge.svg", makeBadge(format));
+   return;
 };
-
-export { createBadge };

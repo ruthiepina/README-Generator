@@ -6,7 +6,7 @@ export const generateMarkdown = async (gitHubAPI, headers, answers, licenseTypes
    const data = await response.json();
    const svg = createBadge(myLicense[0].key);
 
-   let readme = `# ${answers.projectName} ${svg}
+   let readme = `# ${answers.projectName} ![](assets/images/badge.svg)
 ## Project Description
 ${answers.description}
 ## Table of Contents
