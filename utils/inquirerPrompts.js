@@ -37,57 +37,57 @@ Enjoy it!
 `;
 
    const questions = [
-      // {
-      //    type: "input",
-      //    name: "projectName",
-      //    message: "What is your project name?",
-      // },
-      // {
-      //    type: "input",
-      //    name: "description",
-      //    message: "Enter a brief project description.",
-      // },
-      // {
-      //    type: "editor",
-      //    name: "install",
-      //    message: "Provide installation instructions for your project.",
-      // },
-      // {
-      //    type: "editor",
-      //    name: "usage",
-      //    message: "Provide instructions and examples to use. Provide screenshots if needed.",
-      // },
-      // {
-      //    type: "editor",
-      //    name: "contributions",
-      //    message: "Provide guidelines for collaborators to contribute to your project.",
-      // },
-      // {
-      //    type: "editor",
-      //    name: "tests",
-      //    message: "Provide instructions how to run tests on your project.",
-      // },
+      {
+         type: "input",
+         name: "projectName",
+         message: "What is your project name?",
+      },
+      {
+         type: "input",
+         name: "description",
+         message: "Enter a brief project description.",
+      },
+      {
+         type: "editor",
+         name: "install",
+         message: "Provide installation instructions for your project.",
+      },
+      {
+         type: "editor",
+         name: "usage",
+         message: "Provide instructions and examples to use. Provide screenshots if needed.",
+      },
+      {
+         type: "editor",
+         name: "contributions",
+         message: "Provide guidelines for collaborators to contribute to your project.",
+      },
+      {
+         type: "editor",
+         name: "tests",
+         message: "Provide instructions how to run tests on your project.",
+      },
       {
          type: "list",
          name: "license",
          message: "Select your project license type.",
          choices: licenseNames,
       },
-      // {
-      //    type: "input",
-      //    name: "creator",
-      //    message: "Enter your name: (Required)",
-      // },
-      // {
-      //    type: "input",
-      //    name: "gitHubUser",
-      //    message: "Enter your GitHub username: (Required)",
-      // },
-      // {
-      //    type: "input",
-      //    name: "email",
-      //    message: "Enter a valid email address: (Required)",
-      // },
+      {
+         type: "input",
+         name: "creator",
+         message: "Enter your name: (Required)",
+      },
+      {
+         type: "input",
+         name: "gitHubUser",
+         message: "Enter your GitHub username: (Required)",
+      },
+      {
+         type: "input",
+         name: "email",
+         message: "Enter a valid email address: (Required)",
+      },
    ];
 
    console.log(appIntro);
